@@ -1,12 +1,12 @@
 This is a note taking app.
-I made it as a personal project to improve my front-end development skills.
+It is a personal project to improve my front-end development skills.
 Backend is also deployed - one using mongoDB and another using postgreSQL.
 
-I plan to improve CSS and add more functionalities.
+Currently, basic functionalities are implemented and I am improving CSS and add more functionalities.
 
 ### to test site
 
-You can visit @@@@@@
+You can visit https://ed-notes.netlify.com
 You can create an account or use this credential username : q, password : 1.
 
 ### Deployment
@@ -48,6 +48,28 @@ To install the application in a local dev environment, run `yarn install` in the
 - Relationships between data
 - Spread data across tables
 - Able to query tables
+
+### Front-end URLs
+
+/ : landing page.  Short description of the site and button to enter the site 
+     that direct to login page.
+/Notes - display list of notes
+/Notes/:id - display full content of the note with the matching id
+/Notes/:id/edit - display edit page for the note with the matching id
+/Notes/:id/delete - delete the note with the matching id
+/addNote - display a page where user can add a new note
+/login - login page
+/register - registering a new user
+
+### Using redux
+
+
+
+
+
+
+
+
 
 ### Back-end API
 
