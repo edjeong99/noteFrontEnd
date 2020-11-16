@@ -51,7 +51,7 @@ To install the application in a local dev environment, run `yarn install` in the
 
 ### Front-end URLs
 
-/ : landing page.  Short description of the site and button to enter the site 
+/     - landing page.  Short description of the site and button to enter the site 
      that direct to login page.
 /Notes - display list of notes
 /Notes/:id - display full content of the note with the matching id
