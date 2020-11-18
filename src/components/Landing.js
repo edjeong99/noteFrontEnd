@@ -42,7 +42,7 @@ const LandingDiv = styled.div`
   }
 `;
 
-const LandingPage = props => {
+const LandingPage = (props) => {
   console.log('LandingPage userID = ', props.userId);
   const headerStyles1 = () => {
     return {
@@ -51,7 +51,7 @@ const LandingPage = props => {
       fontSize: '7rem',
       fontWeight: 'normal',
       margin: '75px 0 30px 25%',
-      background: 'rgba(255,255,255,0.7)'
+      background: 'rgba(255,255,255,0.7)',
     };
   };
   const headerStyles2 = () => {
@@ -61,7 +61,7 @@ const LandingPage = props => {
       fontSize: '6rem',
       fontWeight: 'normal',
       margin: '75px 30px 30px 22%',
-      background: 'rgba(255,255,255,0.7)'
+      background: 'rgba(255,255,255,0.7)',
     };
   };
   const headerStyles21 = () => {
@@ -71,7 +71,7 @@ const LandingPage = props => {
       fontSize: '5rem',
       fontWeight: 'normal',
       margin: '50px 30px 30px 22%',
-      background: 'rgba(255,255,255,0.7)'
+      background: 'rgba(255,255,255,0.7)',
     };
   };
   const headerStyles3 = () => {
@@ -83,7 +83,7 @@ const LandingPage = props => {
       margin: '0 0 30px 35%',
       paddingRight: '15px',
       background: 'rgba(255,255,255,0.7)',
-      borderRadius: '15px'
+      borderRadius: '15px',
     };
   };
   const headerStyles4 = () => {
@@ -94,13 +94,13 @@ const LandingPage = props => {
       fontSize: '5rem',
       margin: '0 10% 30px 10%',
       background: 'rgba(255,255,255,0.7)',
-      borderRadius: '15px'
+      borderRadius: '15px',
     };
   };
   return (
     <LandingDiv style={{ height: '85vh' }}>
       <Responsive minWidth={1240}>
-        <Header as='h1' style={headerStyles1()}>
+        <Header as="h1" style={headerStyles1()}>
           SMART
           <br />
           NOTES
@@ -110,19 +110,19 @@ const LandingPage = props => {
           can easily take note.
         </p>
         <Button
-          onClick={e => props.history.push('/')}
+          onClick={(e) => props.history.push('/')}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
             marginLeft: '25%',
-            fontSize: '1.5rem'
+            fontSize: '1.5rem',
           }}
         >
           Enter Site
         </Button>
       </Responsive>
       <Responsive minWidth={950} maxWidth={1239}>
-        <Header as='h1' style={headerStyles2()}>
+        <Header as="h1" style={headerStyles2()}>
           SMART
           <br />
           NOTES
@@ -132,19 +132,19 @@ const LandingPage = props => {
           can easily take note.
         </p>
         <Button
-          onClick={e => props.history.push('/')}
+          onClick={(e) => props.history.push('/Notes')}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
             marginLeft: '22%',
-            fontSize: '1.5rem'
+            fontSize: '1.5rem',
           }}
         >
           Enter Site
         </Button>
       </Responsive>
       <Responsive minWidth={781} maxWidth={949}>
-        <Header as='h1' style={headerStyles21()}>
+        <Header as="h1" style={headerStyles21()}>
           SMART
           <br />
           NOTES
@@ -154,19 +154,19 @@ const LandingPage = props => {
           can easily take note.
         </p>
         <Button
-          onClick={e => props.history.push('/')}
+          onClick={(e) => props.history.push('/Notes')}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
             marginLeft: '22%',
-            fontSize: '1.5rem'
+            fontSize: '1.5rem',
           }}
         >
           Enter Site
         </Button>
       </Responsive>
       <Responsive minWidth={501} maxWidth={780}>
-        <Header as='h1' style={headerStyles3()}>
+        <Header as="h1" style={headerStyles3()}>
           SMART
           <br />
           NOTES
@@ -176,31 +176,31 @@ const LandingPage = props => {
           can easily take note.
         </p>
         <Button
-          onClick={e => props.history.push('/')}
+          onClick={(e) => props.history.push('/Notes')}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
             marginLeft: '35%',
-            fontSize: '1.5rem'
+            fontSize: '1.5rem',
           }}
         >
           Enter Site
         </Button>
       </Responsive>
       <Responsive maxWidth={500}>
-        <Header as='h1' style={headerStyles4()}>
+        <Header as="h1" style={headerStyles4()}>
           SMART
           <br />
           NOTES
         </Header>
         <Button
-          onClick={e => props.history.push('/Notes')}
+          onClick={(e) => props.history.push('/Notes')}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
             margin: '0 auto',
             boxShadow: '0 0 20px white',
-            border: '1px solid white'
+            border: '1px solid white',
           }}
         >
           Enter Site
@@ -210,17 +210,17 @@ const LandingPage = props => {
   );
 };
 
-const Landing = args => (
+const Landing = (args) => (
   <Route
     {...args}
-    render={props =>
+    render={(props) =>
       // Redirect to the Note List page if the user is logged in; otherwise display the nested Landing component defined above.
 
       localStorage.secret_token ? ( //props.userId  was used before but value was always null
         <Redirect
           to={{
             pathname: '/Notes',
-            state: { from: props.location }
+            state: { from: props.location },
           }}
         />
       ) : (
@@ -233,4 +233,9 @@ const mapStateToProps = ({ userId }) => {
   return { userId };
 };
 
-export default withRouter(connect(mapStateToProps, {})(Landing));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(Landing)
+);

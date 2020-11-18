@@ -14,7 +14,7 @@ const serverURL = gv.SERVER_PATH || 'http://localhost:9000/';
 
 const initialUser = {
   username: '',
-  password: ''
+  password: '',
 };
 
 class Login extends Component {
@@ -23,7 +23,7 @@ class Login extends Component {
     this.state = {
       user: { ...initialUser },
       message: '',
-      error: null
+      error: null,
     };
   }
 
@@ -34,9 +34,9 @@ class Login extends Component {
     axios
       .post(`${serverURL}${gv.LOGIN_PATH}`, {
         username: 'q',
-        password: '1'
+        password: '1',
       })
-      .then(res => {
+      .then((res) => {
         if (res.status === 200 && res.data) {
           // console.log('login.js res.data.token = ', res.data.token);
 
@@ -49,26 +49,26 @@ class Login extends Component {
           throw new Error();
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
           message: 'Authentication failed.',
-          error: err
+          error: err,
         });
       });
   }
 
-  inputHandler = event => {
+  inputHandler = (event) => {
     const { name, value } = event.target;
     this.setState({ user: { ...this.state.user, [name]: value } });
   };
 
-  submitHandler = event => {
+  submitHandler = (event) => {
     event.preventDefault();
 
     // console.log('Login submitHandler process.env.SERVER_PATH =',    process.env.SERVER_PATH);
     axios
       .post(`${serverURL}${gv.LOGIN_PATH}`, this.state.user)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200 && res.data) {
           // console.log('login.js res.data.token = ', res.data.token);
 
@@ -81,23 +81,23 @@ class Login extends Component {
           throw new Error();
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
           message: 'Authentication failed.',
-          error: err
+          error: err,
         });
       });
   };
 
-  goToRegisterPage = () => {
-    this.props.history.push('/register');
-  };
+  // goToRegisterPage = () => {
+  //   this.props.history.push('/register');
+  // };
   render() {
     const isInvalid =
       this.state.user.password === '' || this.state.user.username === '';
     console.log('inInvalid = ', isInvalid);
     return (
-      <div className='login'>
+      <div className="login">
         <h3> Log In </h3>
         {/* {this.state.message ? <h4>{this.state.message}</h4> : undefined}
         <form onSubmit={this.submitHandler}>
@@ -123,32 +123,32 @@ class Login extends Component {
         <Form onSubmit={this.submitHandler}>
           <Form.Field>
             <input
-              name='username'
+              name="username"
               value={this.state.user.username}
               onChange={this.inputHandler}
-              type='text'
-              placeholder='username'
+              type="text"
+              placeholder="username"
               style={{ marginBottom: '10px' }}
             />
           </Form.Field>
           <Form.Field>
             <input
-              name='password'
+              name="password"
               value={this.state.user.password}
               onChange={this.inputHandler}
-              type='password'
-              placeholder='Password'
+              type="password"
+              placeholder="Password"
             />
           </Form.Field>
 
           <Button
             disabled={isInvalid}
-            type='submit'
+            type="submit"
             style={
               isInvalid
                 ? {
                     background: ourColors.inactiveButtonColor,
-                    color: 'white'
+                    color: 'white',
                   }
                 : { background: ourColors.buttonColor, color: 'white' }
             }
@@ -156,7 +156,7 @@ class Login extends Component {
             Log In
           </Button>
           <p style={{ textAlign: 'center' }}>
-            Don't have an account? <Link to='/register'>Sign Up</Link>
+            Don't have an account? <Link to="/register">Sign Up</Link>
           </p>
 
           {this.state.error && (
