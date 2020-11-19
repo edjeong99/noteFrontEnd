@@ -1,15 +1,10 @@
 import React from 'react';
+import { withFirebase } from './firebase';
 
-export default function Logout(props) {
-  localStorage.removeItem('secret_token');
+const Logout = ({ firebase }) => (
+  <button type="button" onClick={firebase.doSignOut}>
+    Log Out
+  </button>
+);
 
-  // if removing is successful, go to landing page
-  if (!localStorage.getItem('secret_token')) {
-    props.history.push('/');
-  }
-  return (
-    <div>
-      <h4>{'Logout Failed'}</h4>
-    </div>
-  );
-}
+export default withFirebase(Logout);

@@ -63,8 +63,9 @@ class DisplayNotesView extends Component {
         <nav>
           <NavLink to={ROUTES.SIGN_IN}> Login </NavLink>
           <NavLink to={ROUTES.REGISTER}> Register </NavLink>
+          //
           <NavLink to="/logout"> Logout </NavLink>
-
+          <Logout />
           {/* <NavLink to="/logout"> Logout </NavLink> */}
         </nav>
 
