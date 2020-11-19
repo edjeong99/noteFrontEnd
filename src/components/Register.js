@@ -5,6 +5,7 @@ import { Form, Button } from 'semantic-ui-react';
 import { withFirebase } from './firebase';
 import { Link, withRouter } from 'react-router-dom';
 import * as ROUTES from '../util/routes';
+import { compose } from 'recompose';
 
 const initialUser = {
   username: '',
@@ -123,10 +124,21 @@ class RegisterFormBase extends Component {
   }
 }
 
+// a link for resiger page
+const RegisterLink = () => (
+  <p style={{ text: 'center' }}>
+    Don't have an account? <Link to={ROUTES.REGISTER}>Register</Link>
+  </p>
+);
+
 //withRouter is used to redirect the page after register is completed
 // withFirebase let component use all firebase defined in 'firebase.js'
-const RegisterForm = withRouter(withFirebase(RegisterFormBase));
+// compose is used when there are 2 or more higher order components.
+const RegisterForm = compose(
+  withRouter,
+  withFirebase
+)(RegisterFormBase);
 
 export default Register;
 
-export { RegisterForm };
+export { RegisterForm, RegisterLink };
