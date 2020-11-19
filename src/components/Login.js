@@ -31,6 +31,8 @@ class Login extends Component {
   // should be deleted for production
 
   componentDidMount() {
+    console.log('LOGIN');
+    console.log(`${serverURL}${gv.LOGIN_PATH}`);
     axios
       .post(`${serverURL}${gv.LOGIN_PATH}`, {
         username: 'q',
