@@ -26,6 +26,7 @@ class RegisterFormBase extends Component {
     this.state = { ...initialUser };
   }
 
+  // update the input field as user types
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -40,7 +41,7 @@ class RegisterFormBase extends Component {
       .then((authUser) => {
         this.setState({ ...initialUser });
         console.log(authUser);
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.HOME); // change URL to homepage
       })
       .catch((error) => {
         this.setState({ error });
@@ -50,6 +51,8 @@ class RegisterFormBase extends Component {
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state;
 
+    // isInvalid check if required field is not empty and
+    // password is confirmed by passwordTwo
     const isInvalid =
       this.state.email === '' ||
       this.state.passwordOne === '' ||
@@ -120,6 +123,8 @@ class RegisterFormBase extends Component {
   }
 }
 
+//withRouter is used to redirect the page after register is completed
+// withFirebase let component use all firebase defined in 'firebase.js'
 const RegisterForm = withRouter(withFirebase(RegisterFormBase));
 
 export default Register;

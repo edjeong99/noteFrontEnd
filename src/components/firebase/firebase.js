@@ -2,6 +2,7 @@ import app from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 
+// config contains config info to be connected with firebase project
 const config = {
   apiKey: process.env.REACT_APP_APIKEY,
   authDomain: process.env.REACT_APP_AUTHDOMAIN,
@@ -20,7 +21,7 @@ class Firebase {
     this.auth = app.auth();
   }
 
-  // *** Auth API ***
+  // define Firebase Auth API.  These APIs will be used in other component
 
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
@@ -37,8 +38,3 @@ class Firebase {
 }
 
 export default Firebase;
-
-// firebase.initializeApp(config);
-// const databaseRef = firebase.database().ref();
-// export const notesRef = databaseRef.child('notes');
-// export default firebase;
