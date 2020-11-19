@@ -15,7 +15,7 @@ class DisplayNoteList extends Component {
     super(props);
     this.state = {
       query: '',
-      isSearched: false
+      isSearched: false,
     };
     this.displayedNotes = [];
   }
@@ -23,8 +23,10 @@ class DisplayNoteList extends Component {
   componentDidMount() {
     if (authenticate()) {
       this.setState({
-        displayedNotes: this.props.notes
+        displayedNotes: this.props.notes,
       });
+      console.log('NoteList ');
+      console.log(this.displayedNotes);
     } else this.props.history.push('/login');
   }
   // for now just set user as user ID 2
@@ -41,7 +43,7 @@ class DisplayNoteList extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.isSearched !== this.props.isSearched) {
       this.setState({
-        isSearched: this.props.isSearched
+        isSearched: this.props.isSearched,
       });
     }
 
@@ -50,10 +52,10 @@ class DisplayNoteList extends Component {
     // }
   }
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      isSearched: true
+      isSearched: true,
     });
     this.props.handleSearchBoolean(true);
   };
@@ -61,7 +63,7 @@ class DisplayNoteList extends Component {
   resetNotes = () => {
     setTimeout(
       this.setState({
-        displayedNotes: this.props.notes
+        displayedNotes: this.props.notes,
       }),
       1500
     );
@@ -77,7 +79,7 @@ class DisplayNoteList extends Component {
       // displayedNotes will be used.
       // either use state to trigger render when update is complete
       // or put render inside of "then"
-      serverSearchFunc(this.state.query).then(notes => {
+      serverSearchFunc(this.state.query).then((notes) => {
         console.log('in DisplayNoteList Func  then notes = ', notes);
 
         this.displayedNotes = notes;
@@ -93,8 +95,8 @@ class DisplayNoteList extends Component {
     } else this.displayedNotes = [...this.props.notes];
 
     return (
-      <div className='NoteListContainer'>
-        <div className='NoteListTop'>
+      <div className="NoteListContainer">
+        <div className="NoteListTop">
           <h3> Your Notes </h3>
           <SearchNote
             notes={this.state.notes}
@@ -103,8 +105,8 @@ class DisplayNoteList extends Component {
             onSubmit={this.handleOnSubmit}
           />
         </div>
-        <div className='noteList'>
-          {this.displayedNotes.map(note => (
+        <div className="noteList">
+          {this.displayedNotes.map((note) => (
             <DisplayNoteCard
               key={note.id}
               note={note}
