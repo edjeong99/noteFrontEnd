@@ -1,139 +1,127 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import gv from '../util/globalVariable';
+//import axios from 'axios';
+//import gv from '../util/globalVariable';
 import { Form, Button } from 'semantic-ui-react';
-
-const serverURL = gv.SERVER_PATH || 'http://localhost:9000/';
+import { withFirebase } from './firebase';
+import { Link, withRouter } from 'react-router-dom';
+import * as ROUTES from '../util/routes';
 
 const initialUser = {
   username: '',
-  password: ''
+  email: '',
+  passwordOne: '',
+  passwordTwo: '',
+  error: null,
 };
 
-export default class Register extends Component {
+const Register = () => (
+  <div>
+    <h3> Register </h3>
+    <RegisterForm />
+  </div>
+);
+class RegisterFormBase extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      password: '',
-      message: ''
-    };
+    this.state = { ...initialUser };
   }
 
-  onChange = event => {
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  submitHandler = event => {
+  submitHandler = (event) => {
     event.preventDefault();
-    let registeringUser = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    console.log('in Register.js  registeringUser = ', registeringUser);
-    console.log('in Register.js  path = ', `${serverURL}${gv.REGISTER_PATH}`);
+    const { username, email, passwordOne } = this.state;
 
-    axios
-      .post(`${serverURL}${gv.REGISTER_PATH}`, registeringUser)
-      .then(res => {
-        console.log('Register.js  res.userId = ', res.data.userId);
-        if (res.status === 200) {
-          this.setState({
-            message: 'Registration successful',
-            user: { ...initialUser }
-          });
-
-          // console.log('in Register.js SUCCESS`);
-          localStorage.setItem('secret_token', res.data.token);
-          this.props.handleLogin(res.data.userId);
-
-          this.props.history.push('/');
-        } else {
-          throw new Error();
-        }
+    // submit signup info to firebase
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then((authUser) => {
+        this.setState({ ...initialUser });
+        console.log(authUser);
+        this.props.history.push(ROUTES.HOME);
       })
-      .catch(err => {
-        console.log('in Register.js  err = ', err);
-
-        this.setState({
-          message: 'Registration failed.',
-          user: { ...initialUser }
-        });
+      .catch((error) => {
+        this.setState({ error });
       });
   };
 
   render() {
-    const { username, password } = this.state;
-    const isInvalid = password === '' || username === '';
+    const { username, email, passwordOne, passwordTwo, error } = this.state;
+
+    const isInvalid =
+      this.state.email === '' ||
+      this.state.passwordOne === '' ||
+      this.state.passwordOne !== this.state.passwordTwo;
 
     return (
-      <div className='login'>
-        <h3> Register </h3>
+      <div className="login">
         <Form onSubmit={this.submitHandler}>
           <Form.Field>
             <input
-              name='username'
+              name="username"
               value={username}
               onChange={this.onChange}
-              type='text'
-              placeholder='username'
+              type="text"
+              placeholder="Full Name"
               style={{ marginBottom: '10px' }}
             />
           </Form.Field>
-
-          {/* <Form.Field>
-            <input
-              name='username'
-              value={username}
-              onChange={this.onChange}
-              type='username'
-              placeholder='username'
-            />
-          </Form.Field> */}
           <Form.Field>
             <input
-              name='password'
-              value={password}
+              name="email"
+              value={email}
               onChange={this.onChange}
-              type='password'
-              placeholder='Password'
+              type="text"
+              placeholder="Email Address"
+            />
+          </Form.Field>
+
+          <Form.Field>
+            <input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Field>
+
+          <Form.Field>
+            <input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm Password"
             />
           </Form.Field>
 
           <Button
             disabled={isInvalid}
-            type='submit'
+            type="submit"
             style={
               isInvalid
                 ? {
                     background: 'grey',
-                    color: 'white'
+                    color: 'white',
                   }
                 : { background: 'green', color: 'white' }
             }
           >
-            Sign In
+            Sign Up
           </Button>
-          {/* <label htmlFor='username'>Username</label>
-          <input
-            type='text'
-            id='username'
-            name='username'
-            value={this.state.user.username}
-            onChange={this.inputHandler}
-          />
-          <label htmlFor='password'>Password</label>
-          <input
-            type='text'
-            id='password'
-            name='password'
-            value={this.state.user.password}
-            onChange={this.inputHandler}
-          />
-          <button type='submit'>Submit</button>*/}
+
+          {error && <p>{error.message}</p>}
         </Form>
-        {this.state.message ? <h4>{this.state.message}</h4> : undefined}
       </div>
     );
   }
 }
+
+const RegisterForm = withRouter(withFirebase(RegisterFormBase));
+
+export default Register;
+
+export { RegisterForm };

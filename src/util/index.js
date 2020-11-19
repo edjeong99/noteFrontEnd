@@ -3,14 +3,14 @@
 // searchFunc returns notes with query words.
 export const searchFunc = (query, notes) => {
   return notes.filter(
-    note => note.title.includes(query) || note.textBody.includes(query)
+    (note) => note.title.includes(query) || note.textBody.includes(query)
   );
 };
 
 // downloadNotesToCSV download CSV file of all notes
 // it handles basic cases.  There are some cases that produces wrong excel cells.
 
-export const downloadNotesToCSV = notes => {
+export const downloadNotesToCSV = (notes) => {
   let filename, link, csv, keys, columnDelimiter, lineDelimiter;
   columnDelimiter = ',';
   lineDelimiter = '\n';
