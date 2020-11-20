@@ -1,7 +1,8 @@
 import DisplayNoteCard from './DisplayNoteCard';
 import React, { Component } from 'react';
 import SearchNote from './SearchNote';
-import { searchFunc, authenticate } from '../util';
+import { searchFunc } from '../util';
+import authenticate from '../util/authenticate';
 import { serverSearchFunc } from '../actions';
 // below 3 codes should be removed once things work
 // there are used to get notes without login
@@ -46,10 +47,6 @@ class DisplayNoteList extends Component {
         isSearched: this.props.isSearched,
       });
     }
-
-    // if (!authenticate()) {
-    //   this.props.history.push('/login');
-    // }
   }
 
   handleInputChange = (e) => {

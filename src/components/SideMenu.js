@@ -6,22 +6,35 @@ import DownloadCSV from './DownloadCSV';
 import { downloadNotesToCSV } from '../util';
 import { setSearchBoolean } from '../actions';
 import barcelonaImage from '../image/barcelona.jpg';
-
+import { AuthUserContext, withAuthentication } from './session';
+import Logout from './Logout';
+import authenticate from '../util/authenticate';
 // SideMenu component handles left side menu
-const SideMenu = props => {
+
+const SideMenu = (props) => {
+  console.log('SIDEMENU');
+
   return (
-    <div className='sideMenu'>
+    <AuthUserContext.Consumer>
+      {(authUser) => (authUser ? <SideMenuForm {...props} /> : null)}
+    </AuthUserContext.Consumer>
+  );
+};
+
+const SideMenuForm = (props) => {
+  return (
+    <div className="sideMenu">
       <h2>
         {' '}
         Ed's
         <br /> Notes
       </h2>
-      <Link to='/'>
+      <Link to="/">
         <button onClick={() => props.setSearchBoolean(false)}>
           Home / View Notes
         </button>
       </Link>
-      <Link to='/addNote'>
+      <Link to="/addNote">
         <button> Add a Note</button>
       </Link>
 
@@ -31,8 +44,8 @@ const SideMenu = props => {
           downloadNotesToCSV(props.notes);
         }}
       />
-
-      <img src={barcelonaImage} alt='Barcelona' width='150' />
+      <Logout />
+      <img src={barcelonaImage} alt="Barcelona" width="150" />
     </div>
   );
 };
@@ -44,4 +57,4 @@ const mapStateToProps = ({ notes }) => {
 export default connect(
   mapStateToProps,
   { setSearchBoolean }
-)(SideMenu);
+)(withAuthentication(SideMenu));

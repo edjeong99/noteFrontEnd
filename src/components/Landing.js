@@ -4,12 +4,17 @@ import { Route, withRouter, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ourColors from '../ColorScheme.js';
-
+import * as ROUTES from '../util/routes';
 import { Button, Header, Responsive } from 'semantic-ui-react';
+import { RegisterLink } from './Register';
 // import { url } from 'inspector';
+import landingpageimg from '../image/landing2.jpg';
 
 const LandingDiv = styled.div`
   height: 100%;
+  background-image: url('landing2.jpg');
+
+  //background-size: cover;
   p {
     margin: 0 0 15px 45%;
     padding: 10px 0 10px 10px;
@@ -106,11 +111,10 @@ const LandingPage = (props) => {
           NOTES
         </Header>
         <p style={{ fontFamily: 'Roboto', background: '#EFF3F4' }}>
-          Do you have trouble remembering? This note app is for you! Here you
-          can easily take note.
+          Do you have trouble remembering? This note app is for you!
         </p>
         <Button
-          onClick={(e) => props.history.push('/')}
+          onClick={(e) => props.history.push(ROUTES.SIGN_IN)}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
@@ -118,7 +122,7 @@ const LandingPage = (props) => {
             fontSize: '1.5rem',
           }}
         >
-          Enter Site
+          Login
         </Button>
       </Responsive>
       <Responsive minWidth={950} maxWidth={1239}>
@@ -128,11 +132,10 @@ const LandingPage = (props) => {
           NOTES
         </Header>
         <p style={{ fontFamily: 'Roboto', background: '#EFF3F4' }}>
-          Do you have trouble remembering? This note app is for you! Here you
-          can easily take note.
+          Do you have trouble remembering? This note app is for you!
         </p>
         <Button
-          onClick={(e) => props.history.push('/Notes')}
+          onClick={(e) => props.history.push(ROUTES.SIGN_IN)}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
@@ -140,7 +143,7 @@ const LandingPage = (props) => {
             fontSize: '1.5rem',
           }}
         >
-          Enter Site
+          Login
         </Button>
       </Responsive>
       <Responsive minWidth={781} maxWidth={949}>
@@ -150,11 +153,10 @@ const LandingPage = (props) => {
           NOTES
         </Header>
         <p style={{ fontFamily: 'Roboto', background: '#EFF3F4' }}>
-          Do you have trouble remembering? This note app is for you! Here you
-          can easily take note.
+          Do you have trouble remembering? This note app is for you!
         </p>
         <Button
-          onClick={(e) => props.history.push('/Notes')}
+          onClick={(e) => props.history.push(ROUTES.SIGN_IN)}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
@@ -162,7 +164,7 @@ const LandingPage = (props) => {
             fontSize: '1.5rem',
           }}
         >
-          Enter Site
+          Login
         </Button>
       </Responsive>
       <Responsive minWidth={501} maxWidth={780}>
@@ -172,11 +174,10 @@ const LandingPage = (props) => {
           NOTES
         </Header>
         <p style={{ fontFamily: 'Roboto', background: '#EFF3F4' }}>
-          Do you have trouble remembering? This note app is for you! Here you
-          can easily take note.
+          Do you have trouble remembering? This note app is for you!
         </p>
         <Button
-          onClick={(e) => props.history.push('/Notes')}
+          onClick={(e) => props.history.push(ROUTES.SIGN_IN)}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
@@ -184,7 +185,7 @@ const LandingPage = (props) => {
             fontSize: '1.5rem',
           }}
         >
-          Enter Site
+          Login
         </Button>
       </Responsive>
       <Responsive maxWidth={500}>
@@ -194,7 +195,7 @@ const LandingPage = (props) => {
           NOTES
         </Header>
         <Button
-          onClick={(e) => props.history.push('/Notes')}
+          onClick={(e) => props.history.push(ROUTES.SIGN_IN)}
           style={{
             background: ourColors.buttonColor,
             color: 'white',
@@ -203,9 +204,10 @@ const LandingPage = (props) => {
             border: '1px solid white',
           }}
         >
-          Enter Site
+          Login
         </Button>
       </Responsive>
+      <RegisterLink />
     </LandingDiv>
   );
 };

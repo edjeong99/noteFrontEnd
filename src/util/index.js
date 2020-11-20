@@ -45,9 +45,4 @@ export const downloadNotesToCSV = (notes) => {
   link.click();
 };
 
-export const authenticate = () => {
-  const userToken = localStorage.getItem('secret_token');
-  // console.log('Authenticate in Util  user secret Token = ', userToken);
-  if (userToken) return true;
-  else return false;
-};
+export const authenticate = () => {};

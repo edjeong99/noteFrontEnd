@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { Route, withRouter, NavLink } from 'react-router-dom';
-import { authenticate } from '../util';
+import authenticate from '../util/authenticate';
 import * as ROUTES from '../util/routes.js';
 import {
   DisplayNoteList,
@@ -60,14 +60,14 @@ class DisplayNotesView extends Component {
   render() {
     return (
       <div className="displayNotesView">
-        <nav>
+        {/* <nav>
           <NavLink to={ROUTES.SIGN_IN}> Login </NavLink>
           <NavLink to={ROUTES.REGISTER}> Register </NavLink>
           //
           <NavLink to="/logout"> Logout </NavLink>
           <Logout />
-          {/* <NavLink to="/logout"> Logout </NavLink> */}
-        </nav>
+          {/* <NavLink to="/logout"> Logout </NavLink> 
+        </nav> */}
 
         <Route
           path={ROUTES.REGISTER}
@@ -76,7 +76,7 @@ class DisplayNotesView extends Component {
           )}
         />
         <Route
-          path={ROUTES.SIGN_IN}
+          path="/login"
           render={(props) => (
             <Login {...props} handleLogin={this.handleLogin} />
           )}

@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
 
-import { SideMenu } from './components/';
+import { Landing, SideMenu } from './components/';
 import DisplayNotesView from './viewer/DisplayNotesView';
 import landingpageimg from './image/landing2.jpg';
+import { AuthUserContext, withAuthentication } from './components/session';
 
 const appStyles = () => {
   if (window.location.pathname === '/') {
     return {
       backgroundImage: `url(${landingpageimg})`,
-      backgroundSize: 'cover'
+      backgroundSize: 'cover',
     };
   } else {
     return {};
@@ -17,12 +18,14 @@ const appStyles = () => {
 };
 
 const App = () => {
+  console.log('APP');
+
   return (
-    <div className='App' style={appStyles()}>
+    <div className="App" style={appStyles()}>
       <SideMenu />
       <DisplayNotesView />
     </div>
   );
 };
 
-export default App;
+export default withAuthentication(App);
