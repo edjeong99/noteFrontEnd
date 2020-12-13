@@ -7,7 +7,11 @@ Currently, basic functionalities are implemented and I am improving CSS and add 
 ### to test site
 
 You can visit https://ed-notes.netlify.com
-You can create an account or use this credential username : q, password : 1.
+You can create an account or
+use test account
+test@test.com
+123456
+
 
 ### Deployment
 

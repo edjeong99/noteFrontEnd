@@ -21,8 +21,7 @@ const App = () => {
   console.log('APP');
 
   return (
-    <div className="App" style={appStyles()}>
-      <SideMenu />
+    <div style={appStyles()}>
       <DisplayNotesView />
     </div>
   );

@@ -1,6 +1,7 @@
 import DisplayNoteCard from './DisplayNoteCard';
 import React, { Component } from 'react';
 import SearchNote from './SearchNote';
+import { SideMenu } from './';
 import { searchFunc } from '../util';
 import authenticate from '../util/authenticate';
 import { serverSearchFunc } from '../actions';
@@ -92,25 +93,28 @@ class DisplayNoteList extends Component {
     } else this.displayedNotes = [...this.props.notes];
 
     return (
-      <div className="NoteListContainer">
-        <div className="NoteListTop">
-          <h3> Your Notes </h3>
-          <SearchNote
-            notes={this.state.notes}
-            query={this.state.query}
-            handleInputChange={this.handleInputChange}
-            onSubmit={this.handleOnSubmit}
-          />
-        </div>
-        <div className="noteList">
-          {this.displayedNotes.map((note) => (
-            <DisplayNoteCard
-              key={note.id}
-              note={note}
-              submitAdd={this.props.submitAdd}
-              submitDelete={this.props.submitDelete}
+      <div className="App">
+        <SideMenu />
+        <div className="NoteListContainer">
+          <div className="NoteListTop">
+            <h3> Your Notes </h3>
+            <SearchNote
+              notes={this.state.notes}
+              query={this.state.query}
+              handleInputChange={this.handleInputChange}
+              onSubmit={this.handleOnSubmit}
             />
-          ))}
+          </div>
+          <div className="noteList">
+            {this.displayedNotes.map((note) => (
+              <DisplayNoteCard
+                key={note.id}
+                note={note}
+                submitAdd={this.props.submitAdd}
+                submitDelete={this.props.submitDelete}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );

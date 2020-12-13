@@ -1,4 +1,5 @@
 import React from 'react';
+import { SideMenu } from './';
 import { Link } from 'react-router-dom';
 import { Icon, Card, Button } from 'semantic-ui-react';
 import styled from 'styled-components';
@@ -15,11 +16,11 @@ const CardDiv = styled.div`
   /* background: #e6e9ed; */
 `;
 
-const DisplayNoteCard = props => {
+const DisplayNoteCard = (props) => {
   const handleCopy = () => {
     const copiedNote = {
       title: props.note.title,
-      textBody: props.note.textBody
+      textBody: props.note.textBody,
     };
 
     props.submitAdd(copiedNote);
@@ -45,18 +46,18 @@ const DisplayNoteCard = props => {
             color: 'black',
             width: '150px',
             backgroundColor: '#F5F5F5',
-            border: 'none'
+            border: 'none',
           }}
         >
           <Card.Content style={{ paddingTop: '4px', width: '150px' }}>
             <Card.Header
-              as='h4'
+              as="h4"
               style={{
                 height: '40px',
                 overflow: 'hidden',
                 padding: '10px ',
                 borderBottom: '1px solid black',
-                fontSize: '1.6rem'
+                fontSize: '1.6rem',
               }}
             >
               {props.note.title}
@@ -64,7 +65,7 @@ const DisplayNoteCard = props => {
             <p
               style={{
                 height: '60px',
-                overflow: 'hidden'
+                overflow: 'hidden',
                 // fontSize: '1.1rem'
               }}
             >
@@ -74,13 +75,13 @@ const DisplayNoteCard = props => {
           </Card.Content>
         </Card>
       </Link>
-      <div className='iconGroup'>
-        <Icon link size='big' color='teal' name='copy' onClick={handleCopy} />
+      <div className="iconGroup">
+        <Icon link size="big" color="teal" name="copy" onClick={handleCopy} />
         <Icon
           link
-          size='big'
-          color='red'
-          name='delete'
+          size="big"
+          color="red"
+          name="delete"
           onClick={handleDelete}
         />
       </div>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon, Card, Button } from 'semantic-ui-react';
+import { SideMenu } from './';
 
-const DisplayNote = props => {
+const DisplayNote = (props) => {
   let note;
   if (props.match.params.id) {
     let noteArr = props.notes.filter(
-      item => Number(item.id) === Number(props.match.params.id)
+      (item) => Number(item.id) === Number(props.match.params.id)
     );
     // console.log('displayNote  noteArr = ', noteArr);
     note = noteArr[0];
@@ -19,7 +20,7 @@ const DisplayNote = props => {
   const handleCopy = () => {
     const copiedNote = {
       title: note.title,
-      textBody: note.textBody
+      textBody: note.textBody,
     };
 
     props.submitAdd(copiedNote);
@@ -35,29 +36,29 @@ const DisplayNote = props => {
   };
 
   const displayItem = note ? (
-    <div className='noteDisplay'>
-      <section className='noteTitle'>
+    <div className="noteDisplay">
+      <section className="noteTitle">
         <h2> {note.title} </h2>
-        <div className='titleIcon'>
+        <div className="titleIcon">
           <Icon
             link
-            size='large'
-            color='teal'
-            name='copy'
+            size="large"
+            color="teal"
+            name="copy"
             onClick={handleCopy}
           />
           <Icon
             link
-            size='large'
-            color='teal'
-            name='edit'
+            size="large"
+            color="teal"
+            name="edit"
             onClick={handleEdit}
           />
           <Icon
             link
-            size='large'
-            color='red'
-            name='delete'
+            size="large"
+            color="red"
+            name="delete"
             onClick={handleDelete}
           />
         </div>
@@ -69,13 +70,16 @@ const DisplayNote = props => {
   );
 
   return (
-    <div className='displayNote'>
-      {/* <nav className='displayNoteNav'> */}
-      {/* <NavLink to={`/Notes/${props.match.params.id}/edit`}> Edit </NavLink>
+    <div className="App">
+      <SideMenu />
+      <div className="displayNote">
+        {/* <nav className='displayNoteNav'> */}
+        {/* <NavLink to={`/Notes/${props.match.params.id}/edit`}> Edit </NavLink>
         <NavLink to={`/Notes/${props.match.params.id}/delete`}>Delete</NavLink> */}
-      {/* </nav> */}
+        {/* </nav> */}
 
-      {displayItem}
+        {displayItem}
+      </div>
     </div>
   );
 };
