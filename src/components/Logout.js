@@ -11,6 +11,7 @@ class Logout extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     this.props.firebase.doSignOut();
+    localStorage.removeItem('secret_token');
     this.props.history.push(ROUTES.LANDING);
     console.log('LOGOUT COMPLETE');
   };

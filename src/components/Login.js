@@ -41,6 +41,7 @@ class LoginFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
+        localStorage.setItem('secret_token', 'loggedIn');
         this.props.history.push(ROUTES.HOME);
       })
       .catch((error) => {
