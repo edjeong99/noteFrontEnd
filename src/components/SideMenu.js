@@ -12,16 +12,6 @@ import authenticate from '../util/authenticate';
 // SideMenu component handles left side menu
 
 const SideMenu = (props) => {
-  console.log('SIDEMENU');
-
-  return (
-    <AuthUserContext.Consumer>
-      {(authUser) => (authUser ? <SideMenuForm {...props} /> : null)}
-    </AuthUserContext.Consumer>
-  );
-};
-
-const SideMenuForm = (props) => {
   return (
     <div className="sideMenu">
       <h2>

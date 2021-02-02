@@ -36,7 +36,7 @@ class DisplayNotesView extends Component {
   }
 
   submitAdd = (note) => {
-    console.log('Submit Add Note', { ...note, userId: this.props.isSearched });
+    console.log('Submit Add Note', { ...note, userId: this.props.userId });
     this.props.addNote({ ...note, user_id: this.props.userId });
   };
 

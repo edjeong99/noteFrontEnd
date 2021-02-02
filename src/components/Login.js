@@ -9,10 +9,10 @@ import * as ROUTES from '../util/routes';
 import { Form, Button, Header, Icon, Segment } from 'semantic-ui-react';
 import ourColors from '../ColorScheme.js';
 
-const Login = () => (
+const Login = (props) => (
   <div>
     <h3>Log In</h3>
-    <LoginForm />
+    <LoginForm {...props} handleLogin={props.handleLogin} />
     <RegisterLink />
   </div>
 );
@@ -39,9 +39,11 @@ class LoginFormBase extends Component {
 
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((userCredential) => {
         this.setState({ ...INITIAL_STATE });
-        localStorage.setItem('secret_token', 'loggedIn');
+        // console.log(userCredential.user);
+        localStorage.setItem('secret_token', userCredential.user.uid);
+        this.props.handleLogin(userCredential.user.uid);
         this.props.history.push(ROUTES.HOME);
       })
       .catch((error) => {
