@@ -23,15 +23,15 @@ export const EDITING_FAILURE = 'EDITING_FAILURE';
 const token = localStorage.getItem('secret_token');
 const options = {
   headers: {
-    authorization: token
-  }
+    authorization: token,
+  },
 };
 
-export const setUserId = id => dispatch => {
+export const setUserId = (id) => (dispatch) => {
   dispatch({ type: SET_USERID, payload: id });
 };
 
-export const fetchNotes = id => dispatch => {
+export const fetchNotes = (id) => (dispatch) => {
   // let's do some async stuff! Thanks react-thunk :)
   dispatch({ type: FETCHING_REQUEST });
 
@@ -39,65 +39,68 @@ export const fetchNotes = id => dispatch => {
   console.log('fetchNotes  id = ', id);
   axios
     .get(`${server_URL}allnotes/${id}`, options)
-    .then(response => {
+    .then((response) => {
       console.log('fetchNotes  response = ', response);
       dispatch({ type: FETCHING_SUCCESS, payload: response.data });
     })
-    .catch(error => dispatch({ type: FETCHING_FAILURE, payload: error }));
+    .catch((error) => dispatch({ type: FETCHING_FAILURE, payload: error }));
 };
 
-export const addNote = Note => dispatch => {
+export const addNote = (Note) => (dispatch) => {
   console.log('addNote in Actions Note = ', Note);
 
   dispatch({ type: 'ADDING' });
 
   axios
     .post(`${server_URL}addnote`, Note, options)
-    .then(response => {
-      console.log('action dispatch adding  response.data = ', response.data);
+    .then((response) => {
+      console.log(
+        'action dispatch adding  response.data = ',
+        response.data.insertedId
+      );
       dispatch({
         type: ADDING_SUCCESS,
-        payload: { ...Note, id: response.data[0] }
+        payload: { ...Note, id: response.data.insertedId },
       });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({ type: ADDING_FAILURE, payload: error });
     });
 };
 
-export const deleteNote = id => dispatch => {
+export const deleteNote = (id) => (dispatch) => {
   // let's do some async stuff! Thanks react-thunk :)
   dispatch({ type: 'DELETING' });
   axios
     .delete(`${server_URL}notes/${id}`, options)
-    .then(response => {
+    .then((response) => {
       dispatch({ type: DELETING_SUCCESS, payload: id });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({ type: DELETING_FAILURE, payload: error });
     });
 };
 
-export const editNote = Note => dispatch => {
+export const editNote = (Note) => (dispatch) => {
   const editedNote = {
     title: Note.title,
-    textBody: Note.textBody
+    textBody: Note.textBody,
   };
 
   dispatch({ type: 'EDITING_REQUEST' });
 
   axios
     .put(`${server_URL}notes/${Note.id}`, editedNote, options)
-    .then(response => {
+    .then((response) => {
       console.log('edit axios  response.data = ', response.data);
       dispatch({ type: EDITING_SUCCESS, payload: Note });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({ type: EDITING_FAILURE, payload: error });
     });
 };
 
-export const setSearchBoolean = bool => {
+export const setSearchBoolean = (bool) => {
   // let's do some async stuff! Thanks react-thunk :)
   if (bool) return { type: 'SEARCHTRUE' };
   else return { type: 'SEARCHFALSE' };
