@@ -40,23 +40,12 @@ const DisplayNote = (props) => {
       <section className="noteTitle">
         <h2> {note.title} </h2>
         <div className="titleIcon">
+          <Icon link size="big" color="teal" name="copy" onClick={handleCopy} />
+          <Icon link size="big" color="teal" name="edit" onClick={handleEdit} />
+
           <Icon
             link
-            size="large"
-            color="teal"
-            name="copy"
-            onClick={handleCopy}
-          />
-          <Icon
-            link
-            size="large"
-            color="teal"
-            name="edit"
-            onClick={handleEdit}
-          />
-          <Icon
-            link
-            size="large"
+            size="big"
             color="red"
             name="delete"
             onClick={handleDelete}

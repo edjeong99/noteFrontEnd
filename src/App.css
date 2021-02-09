@@ -245,7 +245,7 @@ body {
 .displayNotesView {
   margin: 30px 20px;
   text-align: left;
-  width: 80%;
+  width: 100%;
   /* make vertical scroll for main part  */
   overflow-y: auto;
   flex: 1 1 auto;
