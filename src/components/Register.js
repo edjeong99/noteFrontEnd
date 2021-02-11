@@ -126,7 +126,7 @@ class RegisterFormBase extends Component {
 
 // a link for resiger page
 const RegisterLink = () => (
-  <p style={{ text: 'center' }}>
+  <p style={{ textAlign: 'center', margin: 'auto' }}>
     Don't have an account? <Link to={ROUTES.REGISTER}>Register</Link>
   </p>
 );

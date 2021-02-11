@@ -11,8 +11,9 @@ import { RegisterLink } from './Register';
 import landingpageimg from '../image/landing2.jpg';
 
 const LandingDiv = styled.div`
-  height: 100%;
+  width: 90%;
   background-image: url('landing2.jpg');
+  margin-top: 10%;
 
   //background-size: cover;
   p {
@@ -55,8 +56,9 @@ const LandingPage = (props) => {
       textAlign: 'center',
       fontSize: '7rem',
       fontWeight: 'normal',
-      margin: '75px 0 30px 25%',
+      margin: '75px auto 30px auto',
       background: 'rgba(255,255,255,0.7)',
+      width: '50%',
     };
   };
   const headerStyles2 = () => {
@@ -65,8 +67,9 @@ const LandingPage = (props) => {
       textAlign: 'center',
       fontSize: '6rem',
       fontWeight: 'normal',
-      margin: '75px 30px 30px 22%',
+      margin: '75px auto 30px auto',
       background: 'rgba(255,255,255,0.7)',
+      width: '50%',
     };
   };
   const headerStyles21 = () => {
@@ -75,7 +78,7 @@ const LandingPage = (props) => {
       textAlign: 'center',
       fontSize: '5rem',
       fontWeight: 'normal',
-      margin: '50px 30px 30px 22%',
+      margin: '50px 30px 30px 30px',
       background: 'rgba(255,255,255,0.7)',
     };
   };
@@ -85,8 +88,8 @@ const LandingPage = (props) => {
       textAlign: 'center',
       fontWeight: 'normal',
       fontSize: '5rem',
-      margin: '0 0 30px 35%',
-      paddingRight: '15px',
+      margin: '0 0 30px 0',
+
       background: 'rgba(255,255,255,0.7)',
       borderRadius: '15px',
     };
@@ -110,7 +113,13 @@ const LandingPage = (props) => {
           <br />
           NOTES
         </Header>
-        <p style={{ fontFamily: 'Roboto', background: '#EFF3F4' }}>
+        <p
+          style={{
+            fontFamily: 'Roboto',
+            background: '#EFF3F4',
+            margin: 'auto',
+          }}
+        >
           Do you have trouble remembering? This note app is for you!
         </p>
         <Button
@@ -120,6 +129,9 @@ const LandingPage = (props) => {
             color: 'white',
             marginLeft: '25%',
             fontSize: '1.5rem',
+            width: '50%',
+            margin: '20px auto',
+            display: 'block',
           }}
         >
           Login
@@ -131,7 +143,13 @@ const LandingPage = (props) => {
           <br />
           NOTES
         </Header>
-        <p style={{ fontFamily: 'Roboto', background: '#EFF3F4' }}>
+        <p
+          style={{
+            fontFamily: 'Roboto',
+            background: '#EFF3F4',
+            margin: 'auto',
+          }}
+        >
           Do you have trouble remembering? This note app is for you!
         </p>
         <Button
@@ -139,8 +157,10 @@ const LandingPage = (props) => {
           style={{
             background: ourColors.buttonColor,
             color: 'white',
-            marginLeft: '22%',
             fontSize: '1.5rem',
+            width: '50%',
+            margin: '20px auto',
+            display: 'block',
           }}
         >
           Login
@@ -152,7 +172,13 @@ const LandingPage = (props) => {
           <br />
           NOTES
         </Header>
-        <p style={{ fontFamily: 'Roboto', background: '#EFF3F4' }}>
+        <p
+          style={{
+            fontFamily: 'Roboto',
+            background: '#EFF3F4',
+            margin: 'auto',
+          }}
+        >
           Do you have trouble remembering? This note app is for you!
         </p>
         <Button
@@ -162,6 +188,9 @@ const LandingPage = (props) => {
             color: 'white',
             marginLeft: '22%',
             fontSize: '1.5rem',
+            width: '50%',
+            margin: '20px auto',
+            display: 'block',
           }}
         >
           Login
@@ -173,7 +202,13 @@ const LandingPage = (props) => {
           <br />
           NOTES
         </Header>
-        <p style={{ fontFamily: 'Roboto', background: '#EFF3F4' }}>
+        <p
+          style={{
+            fontFamily: 'Roboto',
+            background: '#EFF3F4',
+            margin: 'auto',
+          }}
+        >
           Do you have trouble remembering? This note app is for you!
         </p>
         <Button
@@ -181,8 +216,10 @@ const LandingPage = (props) => {
           style={{
             background: ourColors.buttonColor,
             color: 'white',
-            marginLeft: '35%',
             fontSize: '1.5rem',
+            width: '50%',
+            margin: '20px auto',
+            display: 'block',
           }}
         >
           Login
@@ -202,6 +239,9 @@ const LandingPage = (props) => {
             margin: '0 auto',
             boxShadow: '0 0 20px white',
             border: '1px solid white',
+            width: '50%',
+            margin: 'auto',
+            display: 'block',
           }}
         >
           Login
