@@ -96,7 +96,7 @@ class LoginFormBase extends Component {
           {error && <p> {error.message} </p>}
         </Form>
         <div class="testAccount">
-          <p> For a test drive this site, you can use below login info </p>
+          <p> Use below login info for a quick review </p>
           <p> login : "test@test.com"</p>
           <p> password : 123456</p>
         </div>

@@ -54,13 +54,10 @@ export const addNote = (Note) => (dispatch) => {
   axios
     .post(`${server_URL}addnote`, Note, options)
     .then((response) => {
-      console.log(
-        'action dispatch adding  response.data = ',
-        response.data.insertedId
-      );
+      console.log('action dispatch adding  response.data = ', response.data[0]);
       dispatch({
         type: ADDING_SUCCESS,
-        payload: { ...Note, id: response.data.insertedId },
+        payload: { ...Note, id: response.data[0] },
       });
     })
     .catch((error) => {
