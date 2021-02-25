@@ -11,7 +11,6 @@ import ourColors from '../ColorScheme.js';
 
 const Login = (props) => (
   <div>
-    <h3>Log In</h3>
     <LoginForm {...props} handleLogin={props.handleLogin} />
     <RegisterLink />
   </div>
@@ -57,6 +56,7 @@ class LoginFormBase extends Component {
 
     return (
       <div className="login">
+        <h3 class="loginTitle">Log In</h3>
         <Form onSubmit={this.submitHandler}>
           <Form.Field>
             <input
@@ -95,6 +95,11 @@ class LoginFormBase extends Component {
 
           {error && <p> {error.message} </p>}
         </Form>
+        <div class="testAccount">
+          <p> For a test drive this site, you can use below login info </p>
+          <p> login : "test@test.com"</p>
+          <p> password : 123456</p>
+        </div>
       </div>
     );
   }
