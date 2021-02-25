@@ -77,7 +77,7 @@ To install the application in a local dev environment, run `yarn install` in the
 
 ### Back-end API
 
-##### GET https://https://ed-notes.herokuapp.com/allnotes/:id
+##### GET https://ed-notes.herokuapp.com/allnotes/:id
 
 Returns an array of all the notes of logged users.
 
