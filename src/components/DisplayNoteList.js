@@ -23,13 +23,24 @@ class DisplayNoteList extends Component {
   }
 
   componentDidMount() {
+    console.log('DisplayNoteList ComponentMount ');
     if (authenticate()) {
       this.setState({
         displayedNotes: this.props.notes,
       });
-      console.log('NoteList ');
+      console.log('NoteList user authenticated ');
       console.log(this.displayedNotes);
-    } else this.props.history.push('/login');
+    } else {
+      console.log('noteList user NOT authenticated');
+      this.props.history.push('/');
+    }
+
+    // above firebase authenticate is not working correctly
+    // need to check local to see if user is logged in
+
+    localStorage.secret_token
+      ? console.log('NoteList user localStrage is true ')
+      : this.props.history.push('/');
   }
   // for now just set user as user ID 2
   //   this.props.handleLogin(2);

@@ -1,9 +1,10 @@
 This is a note taking app.
 It is a personal project to improve my front-end development skills.
-I also coded Backend part using postgreSQL.
 
 It's built using React and Redux.
 Firebase auth is another main tech I used.
+
+It is connected to my Backend part built with NodeJS and postgreSQL.
 
 ### to test site
 
